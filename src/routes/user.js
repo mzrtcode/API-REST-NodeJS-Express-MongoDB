@@ -1,4 +1,5 @@
 import Express  from "express";
+import userSchema from "../models/user";
 
 const router = Express.Router();
 
