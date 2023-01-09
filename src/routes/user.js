@@ -19,4 +19,12 @@ router.get('/users',(req,res) => {
     .catch(error => res.json({ message: error }))
 })
 
+// get a user
+router.get('/users/:id',(req,res) => {
+  const { id } = req.params;
+  userSchema.findById(id)
+    .then(data=> res.json(data))
+    .catch(error => res.json({message: error}))
+})
+
 export default router;
