@@ -1,11 +1,21 @@
-import Express from 'express';
+import Express from "express";
+import Mongoose from "mongoose";
+import * as dotenv from "dotenv";
+import mongoose from "mongoose";
 
+dotenv.config();
 const app = Express();
 const port = process.env.PORT || 3000;
 
 // routes
-app.get('/',(req,res) =>{
-    res.send('Welcome to my API')
-})
+app.get("/", (req, res) => {
+  res.send("Welcome to my API");
+});
 
-app.listen(port,() => console.log(`Running on port ${port}`));
+// mongodb connection
+mongoose.set('strictQuery', true)
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log(":: Connected to MongoDB Atlas ::"))
+  .catch((error) => console.error(error));
+
+app.listen(port, () => console.log(`Running on port ${port}`));
