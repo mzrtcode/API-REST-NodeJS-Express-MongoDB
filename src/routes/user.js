@@ -27,4 +27,14 @@ router.get('/users/:id',(req,res) => {
     .catch(error => res.json({message: error}))
 })
 
+// update a user
+router.put('/users/:id',(req,res) =>{
+  const { id } = req.params;
+  const { name, age, email} = req.body;
+
+  userSchema.updateOne({ _id: id },{ $set:{name, age, email} })
+    .then(data => res.sendStatus(200))
+    .catch(error => res.json({message: error}))
+})
+
 export default router;
